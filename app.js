@@ -22,30 +22,28 @@ window.onload = () => {
 document.getElementById('searchForm').addEventListener('submit', (event) => {
     event.preventDefault();
     searchTerm = document.getElementById('searchInput').value;
-    console.log('searchedText', searchTerm);
     displaySearchedGifs();
     pg = 0;
     gifDiv.innerHTML = '';
     document.getElementById('showBtn').classList.remove('hidden');
+
 });
 
-searchInput.addEventListener('input', () => {
+searchInput.addEventListener('input', ()=> {
     if (!searchInput.value) {
         pg = 0;
         gifDiv.innerHTML = '';
         document.getElementById('showBtn').classList.add('hidden');
         displayTrendingGifs();
     }
-})
+});
 
 async function displayGifs(url) {
-    console.log('displaying gifs')
     let gifObjs = await getResults(url);
     gifObjs.forEach((gifObj) => {
         let imgUrl = gifObj.images.fixed_height.url;
         gifDiv.innerHTML += `<img src=${imgUrl}></img>`;
     });
-    console.log('gifDiv', gifDiv.innerHTML);
     pg += 1;
 };
 
@@ -55,7 +53,6 @@ async function displayTrendingGifs() {
 }
 
 async function displaySearchedGifs() {
-    console.log('pAgE num:', pg);
     const url = search + `apiKey=${apiKey}&q=${searchTerm}&offset=${pg*limit}`;
     await displayGifs(url);
 }
