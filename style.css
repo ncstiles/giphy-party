@@ -1,0 +1,13 @@
+#header {
+    display:grid;
+    place-items: center;
+}
+
+#searchForm {
+    display: grid;
+    place-items: center;
+}
+
+.hidden {
+    display: none;
+}
